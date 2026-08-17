@@ -2,110 +2,46 @@ package main
 
 import "fmt"
 
-// ==========================
-// Domain Layer
-// ==========================
-
-// Entity
-type User struct {
-	ID   int
-	Name string
-}
-
-// Repository abstraction
-// Application depends on this
+// Interface
 type UserRepository interface {
-	GetUser(id int) User
+	FindUser(id int) string
 }
 
-// ==========================
-// Infrastructure Layer
-// ==========================
+// Concrete implementation
+type PostgresUserRepository struct{}
 
-// Lower level database abstraction
-type PostgresRepository interface {
-	Query(query string) string
+func (p PostgresUserRepository) FindUser(id int) string {
+	return "Mahdi"
 }
 
-// Concrete PostgreSQL implementation
-type PostgresDB struct {
-}
-
-func (p PostgresDB) Query(query string) string {
-	return "Postgres result"
-}
-
-// User repository implementation
-// It uses PostgreSQL internally
-type UserRepositoryImpl struct {
-	db PostgresRepository
-}
-
-func NewUserRepository(
-	db PostgresRepository,
-) *UserRepositoryImpl {
-
-	return &UserRepositoryImpl{
-		db: db,
-	}
-}
-
-func (r UserRepositoryImpl) GetUser(id int) User {
-
-	result := r.db.Query("SELECT * FROM users")
-
-	fmt.Println(result)
-
-	return User{
-		ID:   id,
-		Name: "Mahdi",
-	}
-}
-
-// ==========================
-// Application Layer
-// ==========================
-
+// Service
 type UserService struct {
-	userRepo UserRepository
+	repository UserRepository
 }
+
+// Constructor
 
 func NewUserService(
-	userRepo UserRepository,
+	repository UserRepository,
 ) *UserService {
 
 	return &UserService{
-		userRepo: userRepo,
+		repository: repository,
 	}
 }
 
-func (s UserService) GetUser(id int) User {
-	return s.userRepo.GetUser(id)
-}
+func (s UserService) GetUser(id int) {
+	user := s.repository.FindUser(id)
 
-// ==========================
-// Composition Root
-// main creates dependencies
-// ==========================
+	fmt.Println(user)
+}
 
 func main() {
 
-	// Create database
-	postgres := PostgresDB{}
+	repository := PostgresUserRepository{}
 
-	// Inject postgres into repository
-	userRepository := NewUserRepository(
-		postgres,
-	)
+	service := NewUserService(repository)
 
-	// Inject repository into service
-	userService := NewUserService(
-		userRepository,
-	)
-
-	// Use service
-	user := userService.GetUser(1)
-
-	fmt.Println(user)
+	service.GetUser(1)
 
 }

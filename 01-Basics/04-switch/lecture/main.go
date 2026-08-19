@@ -3,7 +3,11 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("1. Basic Switch")
+
+	// ============================================================
+	// 1. Basic Switch
+	// ============================================================
+
 	day := 1
 
 	switch day {
@@ -25,16 +29,23 @@ func main() {
 		fmt.Println("Invalid day")
 	}
 
-	fmt.Print("2. Multiple values in one case")
+	// ============================================================
+	// 2. Multiple Values in One Case
+	// ============================================================
+
 	switch day {
 	case 6, 7:
-		fmt.Printf("Weekend")
+		fmt.Println("Weekend")
 	default:
 		fmt.Println("Weekday")
 	}
 
-	fmt.Print("3. Switch without an expression")
+	// ============================================================
+	// 3. Switch Without an Expression
+	// ============================================================
+
 	age := 27
+
 	switch {
 	case age < 13:
 		fmt.Println("Child")
@@ -46,8 +57,12 @@ func main() {
 		fmt.Println("Senior")
 	}
 
-	fmt.Print("4. Switch with strings")
+	// ============================================================
+	// 4. Switch with Strings
+	// ============================================================
+
 	command := "start"
+
 	switch command {
 	case "start":
 		fmt.Println("Starting...")
@@ -57,5 +72,37 @@ func main() {
 		fmt.Println("Restarting...")
 	default:
 		fmt.Println("Unknown command")
+	}
+
+	// ============================================================
+	// 5. Switch with Multiple Conditions
+	// ============================================================
+
+	score := 85
+
+	switch {
+	case score >= 90:
+		fmt.Println("Excellent")
+	case score >= 70:
+		fmt.Println("Good")
+	case score >= 50:
+		fmt.Println("Pass")
+	default:
+		fmt.Println("Fail")
+	}
+
+	// ============================================================
+	// 6. Switch with Initialization
+	// ============================================================
+
+	switch status := 200; status {
+	case 200:
+		fmt.Println("OK")
+	case 404:
+		fmt.Println("Not Found")
+	case 500:
+		fmt.Println("Internal Server Error")
+	default:
+		fmt.Println("Unknown status")
 	}
 }

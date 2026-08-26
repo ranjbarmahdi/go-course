@@ -70,12 +70,23 @@ func (s *Stack[T]) Pop() (T, bool) {
 
 func main() {
 	stack := Stack[int]{
-		values: []int{1, 2, 3, 4},
+		values: []int{},
 	}
-	stack.Push(5)
-	stack.Push(7)
+	stack.Push(10)
+	stack.Push(20)
+	stack.Push(30)
 
 	fmt.Println(stack)
 
 	res, exists := stack.Pop()
+	fmt.Println(res, exists)
+
+	res, exists = stack.Pop()
+	fmt.Println(res, exists)
+
+	res, exists = stack.Pop()
+	fmt.Println(res, exists)
+
+	res, exists = stack.Pop()
+	fmt.Println(res, exists)
 }

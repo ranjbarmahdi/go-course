@@ -673,11 +673,11 @@ CURRENT POSITION
 
 You are here:
 
-02-standard-libraries
+04-advanced-go
 
-└── 23-io
+└── 34-generics
 
 
 Next:
 
-24-encoding-json
+35-reflection

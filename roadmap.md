@@ -667,17 +667,8 @@ CI/CD
 
 
 ====================================
-CURRENT POSITION
+NEXT TOPIC TO LEARN
 ====================================
 
+45-json-api
 
-You are here:
-
-04-advanced-go
-
-└── 34-generics
-
-
-Next:
-
-35-reflection

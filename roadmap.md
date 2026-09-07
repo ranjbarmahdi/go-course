@@ -97,7 +97,7 @@ PHASE 2 — STANDARD LIBRARIES ⭐ CURRENT
 02-standard-libraries
 
 
-├── 18-fmt
+├── 01-fmt
 
 Topics:
 
@@ -108,7 +108,7 @@ Topics:
 - Formatting verbs
 
 
-├── 19-strings
+├── 02-strings
 
 Topics:
 
@@ -121,7 +121,7 @@ Topics:
 - Builder
 
 
-├── 20-strconv
+├── 03-strconv
 
 Topics:
 
@@ -133,7 +133,7 @@ Topics:
 - ParseBool
 
 
-├── 21-time ⭐ CURRENT
+├── 04-time ⭐ CURRENT
 
 Topics:
 
@@ -158,7 +158,7 @@ Topics:
 - Ticker
 
 
-├── 22-os
+├── 05-os
 
 Topics:
 
@@ -173,7 +173,7 @@ Examples:
 - os.WriteFile()
 
 
-├── 23-io
+├── 06-io
 
 Topics:
 
@@ -188,7 +188,7 @@ Used in:
 - HTTP
 - Network
 
-├── 24-encoding-json ⭐⭐⭐
+├── 07-encoding-json ⭐⭐⭐
 
 Topics:
 
@@ -199,7 +199,7 @@ Topics:
 
 
 
-├── 25-bufio
+├── 08-bufio
 
 Topics:
 
@@ -209,7 +209,7 @@ Topics:
 - Buffering
 
 
-├── 26-filepath
+├── 09-filepath
 
 Topics:
 
@@ -220,7 +220,7 @@ Topics:
 - Walk
 
 
-├── 27-regexp
+├── 10-regexp
 
 Topics:
 
@@ -230,7 +230,7 @@ Topics:
 - Validation
 
 
-├── 28-sort
+├── 11-sort
 
 Topics:
 
@@ -239,7 +239,7 @@ Topics:
 - sort.Slice()
 
 
-├── 29-flag
+├── 12-flag
 
 Topics:
 
@@ -256,7 +256,7 @@ PHASE 3 — TESTING
 03-testing
 
 
-├── 30-testing-package
+├── 01-testing-package
 
 Topics:
 
@@ -268,7 +268,7 @@ Topics:
 - Coverage
 
 
-├── 31-mocking
+├── 02-mocking
 
 Topics:
 
@@ -277,7 +277,7 @@ Topics:
 - Dependency testing
 
 
-└── 32-integration-testing
+└── 03-integration-testing
 
 Topics:
 
@@ -295,7 +295,7 @@ PHASE 4 — ADVANCED GO
 04-advanced-go
 
 
-├── 33-advanced-structs
+├── 01-advanced-structs
 
 Topics:
 
@@ -304,7 +304,7 @@ Topics:
 - Struct tags
 
 
-├── 34-generics
+├── 02-generics
 
 Topics:
 
@@ -314,7 +314,7 @@ Topics:
 - Generic data structures
 
 
-├── 35-reflection
+├── 03-reflection
 
 Topics:
 
@@ -323,7 +323,7 @@ Topics:
 - When not to use reflection
 
 
-└── 36-memory-management
+└── 04-memory-management
 
 Topics:
 
@@ -341,7 +341,7 @@ PHASE 5 — CONCURRENCY ⭐⭐⭐
 05-concurrency
 
 
-├── 37-goroutines
+├── 01-goroutines
 
 Topics:
 
@@ -349,7 +349,7 @@ Topics:
 - Goroutine lifecycle
 
 
-├── 38-channels
+├── 02-channels
 
 Topics:
 
@@ -359,7 +359,7 @@ Topics:
 - Closing channels
 
 
-├── 39-select
+├── 03-select
 
 Topics:
 
@@ -368,7 +368,7 @@ Topics:
 - Cancellation
 
 
-├── 40-sync
+├── 04-sync
 
 Topics:
 
@@ -378,7 +378,7 @@ Topics:
 - Once
 
 
-└── 41-concurrency-patterns
+└── 05-concurrency-patterns
 
 Topics:
 
@@ -397,7 +397,7 @@ PHASE 6 — CONTEXT
 06-context
 
 
-└── 42-context
+└── 01-context
 
 
 Topics:
@@ -419,7 +419,7 @@ PHASE 7 — BACKEND DEVELOPMENT
 07-backend-development
 
 
-├── 43-http-server
+├── 01-http-server
 
 Standard library:
 
@@ -435,7 +435,7 @@ Topics:
 - Middleware
 
 
-├── 44-rest-api
+├── 02-rest-api
 
 Topics:
 
@@ -446,7 +446,7 @@ Topics:
 - Sorting
 
 
-├── 45-json-api
+├── 03-json-api
 
 Topics:
 
@@ -455,7 +455,7 @@ Topics:
 - Error responses
 
 
-├── 46-middleware
+├── 04-middleware
 
 Topics:
 
@@ -465,7 +465,7 @@ Topics:
 - CORS
 
 
-└── 47-authentication
+└── 05-authentication
 
 Topics:
 
@@ -484,7 +484,7 @@ PHASE 8 — DATABASE
 08-database
 
 
-├── 48-database-sql
+├── 01-database-sql
 
 Topics:
 
@@ -493,7 +493,7 @@ Topics:
 - Connection pool
 
 
-├── 49-postgresql
+├── 02-postgresql
 
 Topics:
 
@@ -504,13 +504,23 @@ Topics:
 - Transactions
 
 
-└── 50-repository-pattern
+├── 03-repository-pattern
 
 Topics:
 
 - Repository interface
 - PostgreSQL implementation
 - Unit of Work
+
+
+└── 04-handling-transactions
+
+Topics:
+
+- TransactionManager
+- RunInTx
+- Context-propagation pattern
+- getExecutor
 
 
 
@@ -522,7 +532,7 @@ PHASE 9 — PRODUCTION BACKEND
 09-production
 
 
-├── 51-configuration
+├── 01-configuration
 
 Topics:
 
@@ -530,7 +540,7 @@ Topics:
 - Config management
 
 
-├── 52-logging
+├── 02-logging
 
 Topics:
 
@@ -538,7 +548,7 @@ Topics:
 - Structured logging
 
 
-├── 53-caching
+├── 03-caching
 
 Topics:
 
@@ -547,7 +557,7 @@ Topics:
 - Cache strategies
 
 
-├── 54-messaging
+├── 04-messaging
 
 Topics:
 
@@ -556,7 +566,7 @@ Topics:
 - Event driven design
 
 
-├── 55-docker
+├── 05-docker
 
 Topics:
 
@@ -565,7 +575,7 @@ Topics:
 - Multi stage builds
 
 
-├── 56-deployment
+├── 06-deployment
 
 Topics:
 
@@ -575,7 +585,7 @@ Topics:
 - Health checks
 
 
-├── 57-grpc
+├── 07-grpc
 
 Topics:
 
@@ -584,7 +594,7 @@ Topics:
 - gRPC client
 
 
-├── 58-cli-tools
+├── 08-cli-tools
 
 Topics:
 
@@ -592,7 +602,7 @@ Topics:
 - urfave/cli
 
 
-├── 59-performance
+├── 09-performance
 
 Topics:
 
@@ -601,7 +611,7 @@ Topics:
 - Benchmarking
 
 
-└── 60-security
+└── 10-security
 
 Topics:
 
@@ -670,5 +680,4 @@ CI/CD
 NEXT TOPIC TO LEARN
 ====================================
 
-45-json-api
-
+Phase 8 — 04-handling-transactions

@@ -33,7 +33,7 @@ Requirements:
 
 Reference SQL is in:
 
-    08-databases/49-postgresql/migrations/
+    08-database/02-postgresql/migrations/
 
 ============================================================
 Goal

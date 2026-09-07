@@ -749,7 +749,7 @@ MIGRATION FILES (PRODUCTION)
 
 Create folder:
 
-    08-databases/49-postgresql/migrations/
+    08-database/02-postgresql/migrations/
 
 
 Example 001_create_users.up.sql:

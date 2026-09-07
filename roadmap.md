@@ -465,7 +465,7 @@ Topics:
 - CORS
 
 
-└── 05-authentication
+├── 05-authentication
 
 Topics:
 
@@ -474,6 +474,16 @@ Topics:
 - Password hashing
 - bcrypt
 
+
+└── 06-validation
+
+Topics:
+
+- validator/v10
+- Struct tags
+- Input validation
+- Custom validators
+- Validation vs business rules
 
 
 ====================================

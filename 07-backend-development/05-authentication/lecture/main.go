@@ -512,9 +512,9 @@ Both are JWTs, but refresh token has a different purpose.
 */
 
 type TokenService struct {
-	secret            []byte
-	accessTokenTTL    time.Duration
-	refreshTokenTTL   time.Duration
+	secret          []byte
+	accessTokenTTL  time.Duration
+	refreshTokenTTL time.Duration
 }
 
 func NewTokenService(secret string) *TokenService {

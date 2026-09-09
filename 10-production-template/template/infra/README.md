@@ -1,15 +1,21 @@
 # infra
 
-Purpose: Technical implementations — HTTP, database, config, wiring, runtime.
+Technical implementations — HTTP, databases, config, wiring, runtime.
 
-Contains:
-- `config/` — load and validate environment variables
-- `database/` — PostgreSQL connection, ping, close
-- `adapters/` — repository implementations, Kafka, JWT helpers
-- `httpserver/` — routes, handlers, middleware, health
-- `bootstrap/` — Google Wire dependency injection (Topic 11)
-- `runtime/` — App, Runner, graceful shutdown
+## Contains
 
-Rules:
+```
+infra/
+├── adapters/       repository implementations, UUID generator
+├── bootstrap/      Google Wire composition root
+├── config/         environment loading
+├── database/       postgres, redis, migrate
+├── httpserver/     HTTP server, routes, middleware
+└── runtime/        App, Runner, graceful shutdown
+```
+
+## Rules
+
 - Implements interfaces from `domain/` and `application/contracts/`
 - Only `bootstrap/` and `cmd/` wire concrete types together
+- Repositories use `postgres.Executor(ctx, db)` — never bypass for transactions

@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 )
 
@@ -36,4 +37,29 @@ func WriteError(w http.ResponseWriter, status int, message string, optionalError
 		Message: message,
 		Data:    data,
 	})
+}
+
+func WriteValidationError(w http.ResponseWriter, err error) {
+	var verr *ValidationError
+	if !errors.As(err, &verr) {
+		WriteError(w, http.StatusBadRequest, "invalid request")
+		return
+	}
+
+	switch verr.Kind {
+	case "json":
+		WriteError(w, http.StatusBadRequest, "invalid json body")
+
+	case "validation":
+		writeJSON(w, http.StatusBadRequest, response{
+			Status:  false,
+			Message: "validation failed",
+			Data: map[string]any{
+				"fields": verr.Fields,
+			},
+		})
+
+	default:
+		WriteError(w, http.StatusBadRequest, "invalid request")
+	}
 }

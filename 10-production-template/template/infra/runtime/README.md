@@ -1,13 +1,32 @@
 # infra/runtime
 
-Purpose: Run long-lived processes (HTTP server, future Kafka consumer).
+Run long-lived processes and coordinate graceful shutdown.
 
-Rules:
-- `App.Run()` starts all Runners with errgroup
-- Graceful shutdown on SIGINT/SIGTERM
+## Files
 
-Files (Topic 08):
-- `runtime.go` — Runner and Indicator interfaces
-- `app.go` — App runs []Runner
+| File | Purpose |
+|---|---|
+| `runner.go` | `Runner` and `Indicator` interfaces |
+| `app.go` | `App` — starts all runners with errgroup |
 
-Today: HTTP server is the only Runner.
+## How it works
+
+1. Wire builds `[]Runner` (today: HTTP server only)
+2. `App.Run(ctx)` starts each runner in errgroup
+3. Context cancellation triggers graceful shutdown
+4. HTTP server handles its own `Shutdown` on `ctx.Done()`
+
+## Indicator
+
+Database packages implement `Indicator` for `/readyz`:
+
+```go
+type Indicator interface {
+    Name() string
+    Ready(ctx context.Context) bool
+}
+```
+
+## Adding a runner
+
+Implement `Runner` (e.g. Kafka consumer), add to `provideRunners` in bootstrap.

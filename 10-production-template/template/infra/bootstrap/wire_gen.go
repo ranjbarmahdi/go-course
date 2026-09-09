@@ -9,10 +9,14 @@ package bootstrap
 import (
 	"context"
 	"errors"
+	"template/application/usecase/sample/create-sample"
+	"template/application/usecase/sample/get-sample"
+	"template/infra/adapters/repository"
 	"template/infra/config"
 	"template/infra/database/postgres"
 	"template/infra/database/redis"
 	"template/infra/httpserver"
+	"template/infra/httpserver/routes/sample"
 	"template/infra/runtime"
 )
 
@@ -32,8 +36,14 @@ func Wire(ctx context.Context, cfg *config.Config) (*runtime.App, func(), error)
 	}
 	redisIndicator := redis.NewIndicator(client)
 	v := provideIndicators(indicator, redisIndicator)
-	handler := httpserver.NewRouter(v)
-	server := httpserver.NewServer(addr, handler, ctx)
+	sampleRepository := repository.NewSampleRepository(db)
+	idGenerator := provideIDGenerator()
+	runInTx := postgres.NewRunInTx(db)
+	implementation := createsample.New(sampleRepository, idGenerator, runInTx)
+	getsampleImplementation := getsample.New(sampleRepository, idGenerator)
+	handler := sample.NewHandler(implementation, getsampleImplementation)
+	httpHandler := httpserver.NewRouter(v, handler)
+	server := httpserver.NewServer(addr, httpHandler, ctx)
 	v2 := provideRunners(server)
 	app := newApp(v2)
 	return app, func() {

@@ -22,8 +22,9 @@ type Config struct {
 	Port        int    `env:"PORT" envDefault:"8080"`
 	Env         string `env:"ENV" envDefault:"development"`
 	DatabaseURL string `env:"DATABASE_URL,required"`
-	JWTSecret   string `env:"JWT_SECRET,required"`
+	DBSchema    string `env:"DB_SCHEMA,required"`
 	LogLevel    string `env:"LOG_LEVEL" envDefault:"info"`
+	AutoMigrate bool   `env:"AUTO_MIGRATE" envDefault:"false"`
 	Redis       RedisConfig
 }
 
@@ -73,8 +74,8 @@ func (c *Config) Validate() error {
 		return fmt.Errorf("PORT must be between 1 and 65535")
 	}
 
-	if len(c.JWTSecret) < 32 {
-		return fmt.Errorf("JWT_SECRET must be at least 32 characters")
+	if strings.TrimSpace(c.DBSchema) == "" {
+		return fmt.Errorf("DB_SCHEMA is required")
 	}
 
 	if err := c.Redis.Validate(c.RedisSelfHost()); err != nil {

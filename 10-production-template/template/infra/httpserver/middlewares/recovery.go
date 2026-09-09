@@ -15,6 +15,7 @@ func Recovery(next http.Handler) http.Handler {
 					"panic", rec,
 					"method", r.Method,
 					"path", r.URL.Path,
+					"request_id", requestIDOf(r.Context()),
 				)
 				utils.WriteError(w, http.StatusInternalServerError, "internal server error")
 			}

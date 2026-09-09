@@ -18,7 +18,7 @@ type Error struct {
 	message string
 }
 
-func NewError(
+func New(
 	kind Kind,
 	message string,
 ) *Error {

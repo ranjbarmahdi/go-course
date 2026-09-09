@@ -16,6 +16,14 @@ func CloneOptionalFloat64(v *float64) *float64 {
 	return &f
 }
 
+func CloneOptionalInt(v *int) *int {
+	if v == nil {
+		return nil
+	}
+	f := *v
+	return &f
+}
+
 func ClonePtr[T any](v *T) *T {
 	if v == nil {
 		return nil

@@ -1,12 +1,24 @@
 # application/errors
 
-Purpose: Application-level errors with Kind for HTTP mapping.
+Application-level errors with a `Kind` for HTTP mapping.
 
-Rules:
-- Use cases return these errors (not raw HTTP status codes)
-- Handlers call `WriteAppError(err)` to map Kind → 400/401/404/500
+## File
 
-Files (Topic 10):
-- `error.go` — Kind enum, Error struct, KindOf()
+- `error.go` — `Kind`, `Error`, `New`, `KindOf`
 
-Kinds: InvalidInput, Unauthorized, NotFound, Internal
+## Kinds
+
+| Kind | Typical HTTP status |
+|---|---|
+| `InvalidInput` | 400 |
+| `Unauthorized` | 401 |
+| `Domain` | 400 |
+| `NotFound` | 404 |
+| `Conflict` | 409 |
+| `Internal` | 500 |
+
+## Usage
+
+Use cases return these errors. HTTP handlers call `utils.WriteAppError(w, err)`.
+
+Domain errors are translated first via `application/utils.TranslateDomainError`.

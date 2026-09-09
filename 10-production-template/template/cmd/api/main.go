@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -9,6 +10,8 @@ import (
 
 	"template/infra/bootstrap"
 	"template/infra/config"
+	"template/infra/database/migrate"
+	"template/infra/database/postgres"
 )
 
 func main() {
@@ -42,6 +45,19 @@ func run() error {
 		syscall.SIGTERM,
 	)
 	defer stop()
+
+	if cfg.AutoMigrate {
+		db, err := postgres.Open(ctx, cfg.DatabaseURL, cfg.DBSchema)
+		if err != nil {
+			return err
+		}
+		if err := migrate.Up(db); err != nil {
+			_ = db.Close()
+			return fmt.Errorf("auto migrate: %w", err)
+		}
+		_ = db.Close()
+		slog.Info("migrations applied", "mode", "auto", "schema", cfg.DBSchema)
+	}
 
 	app, cleanup, err := bootstrap.Wire(ctx, cfg)
 	if err != nil {

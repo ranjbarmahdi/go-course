@@ -1,13 +1,24 @@
 # cmd/api
 
-Purpose: Application entry point.
+Application entry point.
 
-Rules:
-- Load config, setup slog, handle signals
-- Wire dependencies (manual Topic 07, Wire Topic 11)
-- Start `runtime.App`
+## What main.go does
 
-Files:
-- `main.go`
+1. Load config from environment (`.env` via godotenv)
+2. Configure `slog` from `LOG_LEVEL`
+3. Listen for SIGINT/SIGTERM
+4. Optionally auto-migrate when `AUTO_MIGRATE=true`
+5. Call `bootstrap.Wire(ctx, cfg)` to build the app
+6. Run `app.Run(ctx)` until shutdown
 
-Topic 07 adds full wiring: config → db → repo → use case → handler → server
+## Rules
+
+- No business logic here
+- No manual wiring — Wire in `infra/bootstrap/` owns the graph
+- Keep `main` thin
+
+## Run
+
+```bash
+go run ./cmd/api
+```

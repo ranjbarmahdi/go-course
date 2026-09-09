@@ -14,22 +14,22 @@ func TranslateDomainError(err error) error {
 
 	switch domainerror.KindOf(err) {
 	case domainerror.InvalidInput:
-		return apperrors.NewError(apperrors.InvalidInput, err.Error())
+		return apperrors.New(apperrors.InvalidInput, err.Error())
 
 	case domainerror.NotFound:
-		return apperrors.NewError(apperrors.NotFound, err.Error())
+		return apperrors.New(apperrors.NotFound, err.Error())
 
 	case domainerror.Conflict:
-		return apperrors.NewError(apperrors.Conflict, err.Error())
+		return apperrors.New(apperrors.Conflict, err.Error())
 
 	case domainerror.Domain:
-		return apperrors.NewError(apperrors.Domain, err.Error())
+		return apperrors.New(apperrors.Domain, err.Error())
 
 	case domainerror.Internal:
-		return apperrors.NewError(apperrors.Internal, err.Error())
+		return apperrors.New(apperrors.Internal, err.Error())
 
 	default:
 		slog.Error("unmapped domain error", "err", err)
-		return apperrors.NewError(apperrors.Internal, "unexpected error")
+		return apperrors.New(apperrors.Internal, "unexpected error")
 	}
 }

@@ -19,9 +19,11 @@ func Wire(ctx context.Context, cfg *config.Config) (*runtime.App, func(), error)
 	wire.Build(
 		DatabaseSet,
 		IndicatorsSet,
+		AdapterSet,
+		SampleUseCaseSet,
+		SampleHandlerSet,
 		HttpSet,
 		RuntimeSet,
-		// AdapterSet,
 	)
 	return nil, nil, ErrWireNotGenerated
 }

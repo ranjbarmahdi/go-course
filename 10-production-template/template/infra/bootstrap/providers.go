@@ -12,8 +12,8 @@ import (
 	"template/infra/runtime"
 )
 
-func provideIndicators(postgres *postgres.Indicator, rd *redis.Indicator) []runtime.Indicator {
-	return []runtime.Indicator{postgres}
+func provideIndicators(postgres *postgres.Indicator, redis *redis.Indicator) []runtime.Indicator {
+	return []runtime.Indicator{postgres, redis}
 }
 
 func provideAddr(cfg *config.Config) httpserver.Addr {

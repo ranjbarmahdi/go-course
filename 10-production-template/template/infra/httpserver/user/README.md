@@ -1,18 +1,22 @@
 # infra/httpserver/user
 
-Purpose: User HTTP API — routes, handler, request/response DTOs.
+**Placeholder** for a future user/auth feature.
 
-Rules:
-- JSON + validate tags on requests.go only
-- Handler calls `registeruser.UseCase` interface
-- Always `return` after writing error response
+## Reference implementation
 
-Files (Topic 05):
-- `routes.go` — mux.Handle + middleware
-- `handler.go` — Register, Login handlers
-- `requests.go` — JSON input + validator tags
-- `responses.go` — JSON output + mappers from domain
+Use **`routes/sample/`** as the template for new HTTP features:
 
-Routes (planned):
-- POST /api/v1/register
-- POST /api/v1/login
+```
+routes/sample/
+├── routes.go       mount + Register calls
+├── handler.go      decode, validate, use case, write
+├── requests.go     HTTP DTOs (json + validate tags)
+└── responses.go    HTTP DTOs + ToApiResponse mappers
+```
+
+## Planned user routes (not implemented)
+
+- `POST /api/v2/register`
+- `POST /api/v2/login`
+
+When implementing, follow the same pattern as sample and register in `router.go` + Wire.
